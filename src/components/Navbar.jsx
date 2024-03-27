@@ -2,7 +2,7 @@ import { appleImg, bagImg, searchImg } from "../utils/index.js";
 import { navLists } from "../constance/index.js";
 const Navbar = () => {
   return (
-    <header className="flex w-full items-center  justify-between p-5 sm:px-10">
+    <header className="flex w-full items-center justify-between p-5 sm:px-10">
       <nav className="screen-max-width flex w-full">
         <img src={appleImg} alt="apple" width={14} height={18} />
         <div className="flex flex-1 justify-center max-sm:hidden ">

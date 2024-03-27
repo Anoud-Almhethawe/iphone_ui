@@ -1,8 +1,8 @@
 {
   "extends": [
     "standard",
-    "plugin:react/recommended",
     "plugin:tailwindcss/recommended",
+    "plugin:react/recommended",
     "prettier",
     "plugin:react/jsx-runtime"
   ],
