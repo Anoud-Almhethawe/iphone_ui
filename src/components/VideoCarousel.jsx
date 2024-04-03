@@ -5,6 +5,7 @@ import { pauseImg, playImg, replayImg } from "../utils";
 import { useGSAP } from "@gsap/react";
 
 const VideoCarousel = () => {
+  // references to Keep track of the video we're on.
   const videoRef = useRef([]);
   const videoSpanRef = useRef([]);
   const videoDivRef = useRef([]);
@@ -16,9 +17,9 @@ const VideoCarousel = () => {
     isLastVideo: false,
     isPlaying: false,
   });
-  const [loadedData, setLoadedData] = useState([]);
-
   const { isEnd, startPlay, videoId, isLastVideo, isPlaying } = video;
+  //
+  const [loadedData, setLoadedData] = useState([]);
 
   useGSAP(() => {
     gsap.to("#slider", {
@@ -41,12 +42,17 @@ const VideoCarousel = () => {
     });
   }, [isEnd, videoId]);
 
-  // use effect for playing the video
+  // use effect for playing the video and pause
   useEffect(() => {
     if (loadedData.length > 3) {
+      // loadedData exist
       if (!isPlaying) {
+        // video is not playing so
+        // specific video we want to trigger and pause it
         videoRef.current[videoId].pause();
       } else {
+        // video isplaying and startPlay are true so
+        // specific video we want to trigger and play it
         startPlay && videoRef.current[videoId].play();
       }
     }
@@ -55,11 +61,11 @@ const VideoCarousel = () => {
   useEffect(() => {
     let currentProgress = 0;
 
-    // span element for currently playing viedio
+    // span element for currently playing video
     const span = videoSpanRef.current;
 
     if (span[videoId]) {
-      // animate the progress of the viedio
+      // animate the progress of the video
       const anim = gsap.to(span[videoId], {
         onUpdate: () => {
           const progress = Math.ceil(anim.progress() * 100);
@@ -90,16 +96,18 @@ const VideoCarousel = () => {
           }
         },
       });
+
       if (videoId === 0) {
         anim.restart();
       }
-
+      // to update progress bar
       const animUpdate = () => {
         anim.progress(
           videoRef.current[videoId].currentTime /
             hightlightsSlides[videoId].videoDuration
         );
       };
+      // ticker used to update the progress bar
       if (isPlaying) {
         gsap.ticker.add(animUpdate);
       } else {
@@ -142,6 +150,7 @@ const VideoCarousel = () => {
   };
   const handleLoadedMetadata = (i, e) =>
     setLoadedData(prevVideo => [...prevVideo, e]);
+
   return (
     <>
       <div className="flex items-center">
@@ -221,5 +230,4 @@ const VideoCarousel = () => {
     </>
   );
 };
-
 export default VideoCarousel;
