@@ -6,6 +6,7 @@
     "prettier",
     "plugin:react/jsx-runtime"
   ],
+  "plugins": ["react-refresh", "@react-three"],
   "rules": {
     "max-len": [2, 250],
     "no-multiple-empty-lines": ["error", { "max": 1, "maxEOF": 1 }],
