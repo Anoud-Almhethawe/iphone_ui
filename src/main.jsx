@@ -27,7 +27,7 @@ Sentry.init({
     Sentry.reactRouterV6BrowserTracingIntegration({
       useEffect: React.useEffect,
     }),
-    Sentry.browserTracingIntegration(),
+    Sentry.browserTracingIntegration({ enableInp: true }),
     Sentry.metrics.metricsAggregatorIntegration(),
 
     Sentry.replayIntegration({
