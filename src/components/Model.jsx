@@ -27,7 +27,6 @@ const Model = () => {
   // rotation
   const [smallRotation, setSmallRotation] = useState(0);
   const [largeRotation, setLargeRotation] = useState(0);
-  console.log(smallRotation, largeRotation);
 
   const tl = gsap.timeline();
 
@@ -53,7 +52,7 @@ const Model = () => {
       y: 0,
     });
   }, []);
-  console.log(size, model);
+
   return (
     <section className="common-padding">
       <div className="screen-max-width">
