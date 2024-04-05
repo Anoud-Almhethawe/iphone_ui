@@ -7,6 +7,17 @@ import { animateWithGsap } from "../utils/animations";
 const HowitWorks = () => {
   const videoRef = useRef();
   useGSAP(() => {
+    gsap.to(".video", {
+      scrollTrigger: {
+        trigger: ".video",
+        toggleActions: "play none reverse restart",
+        start: "-10% bottom",
+      },
+      onComplete: () => {
+        videoRef.current.play();
+      },
+    });
+
     animateWithGsap(".g_fadeIn", {
       opacity: 1,
       y: 0,
@@ -52,7 +63,7 @@ const HowitWorks = () => {
             </div>
             <div className="hiw-video">
               <video
-                className="pointer-events-none"
+                className="pointer-events-none video"
                 ref={videoRef}
                 muted
                 autoPlay
